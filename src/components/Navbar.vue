@@ -2,7 +2,7 @@
   <v-app-bar
     dark
     app
-    height="65px"
+    height="57px"
   >
     <v-app-bar-nav-icon
       @click="toggleNavside"

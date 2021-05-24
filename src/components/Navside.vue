@@ -2,15 +2,16 @@
     <v-navigation-drawer
         floating
         app
+        permanent
         :mini-variant.sync="mini"
     >
 
-    <v-list-item>
-        <v-list-item-content>
-            <v-list-item-title class="title">
-                Application
-            </v-list-item-title>
-        </v-list-item-content>
+    <v-list-item class="px-2">
+        <v-list-item-avatar>
+            <v-img src="../assets/logo.png"></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-title>Ceaser</v-list-item-title>
     </v-list-item>
 
     <v-divider></v-divider>
@@ -21,6 +22,7 @@
     >
         <v-list-item
             v-for="item in items"
+            :to="item.path"
             :key="item.title"
             link
         >
@@ -41,9 +43,16 @@ export default {
     data: function() {
         return {
             items: [
-                { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-                { title: 'Photos', icon: 'mdi-image' },
-                { title: 'About', icon: 'mdi-help-box' },
+                {
+                    title: 'Catalog',
+                    icon: 'mdi-home',
+                    path: '/catalog'
+                },
+                {
+                    title: 'About',
+                    icon: 'mdi-information',
+                    path: '/about'
+                },
             ],
             right: null,
         }
@@ -63,7 +72,4 @@ export default {
 </script>
 
 <style>
-.title {
-    height: 40px
-}
 </style>
