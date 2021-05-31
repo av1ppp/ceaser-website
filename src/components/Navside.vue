@@ -3,18 +3,9 @@
         floating
         app
         permanent
+        :clipped="true"
         :mini-variant.sync="mini"
     >
-
-    <v-list-item class="px-2">
-        <v-list-item-avatar>
-            <v-img src="../assets/logo.png"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-title>Ceaser</v-list-item-title>
-    </v-list-item>
-
-    <v-divider></v-divider>
 
     <v-list
         dense
