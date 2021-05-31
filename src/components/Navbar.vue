@@ -10,13 +10,10 @@
     >
     </v-app-bar-nav-icon>
 
-    <v-list-item class="px-2">
-        <v-list-item-avatar>
-            <v-img src="../assets/logo.png"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-title>Ceaser</v-list-item-title>
-    </v-list-item>
+    <v-img
+      max-width="40px"
+      src="../assets/logo.png"
+    ></v-img>
 
     <v-spacer></v-spacer>
 
@@ -28,7 +25,7 @@
     Выйти
     </v-btn>
 
-    <div
+    <template
       v-else
     >
       <router-link to="/login">
@@ -38,7 +35,7 @@
       <router-link to="/registration">
         <v-btn rounded color="pink darken-3">Регистрация</v-btn>
       </router-link>
-    </div>
+    </template>
 
   </v-app-bar>
 </template>

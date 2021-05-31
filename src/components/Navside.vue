@@ -37,7 +37,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-                <v-list-item-title>Secure</v-list-item-title>
+                <v-list-item-title>Приватное</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
 
@@ -51,12 +51,12 @@ export default {
         return {
             items: [
                 {
-                    title: 'Catalog',
+                    title: 'Каталог',
                     icon: 'mdi-home',
                     path: '/catalog'
                 },
                 {
-                    title: 'About',
+                    title: 'О нас',
                     icon: 'mdi-information',
                     path: '/about'
                 },
