@@ -1,0 +1,101 @@
+<template>
+    <div style="width: 80%" class="mx-auto mt-5">
+        <h1>Регистрация пользователя</h1>
+
+        <v-form
+            ref="form"
+            v-model="valid"
+        >
+
+            <v-text-field
+                v-model="name"
+                :rules="[v => !!v || 'Обязательно поле']"
+                label="Имя пользователя"
+                required
+            ></v-text-field>
+
+            <v-text-field
+                v-model="email"
+                :rules="rules.email"
+                label="Почта"
+                required
+            ></v-text-field>
+
+            <v-text-field
+                v-model="password"
+                :rules="[v => !!v || 'Обязательное поле']"
+                label="Пароль"
+                required
+            ></v-text-field>
+
+            <v-alert
+                :value="alertError.show"
+                type="error"
+                transition="scale-transition"
+            >
+                {{ alertError.message }}
+            </v-alert>
+
+            <v-col class="text-right">
+                <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    @click="registration"
+                >
+                    Регистрация
+                </v-btn>
+            </v-col>
+           
+        </v-form>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            alertError: {
+                show: false,
+                message: ''
+            },
+            name: '',
+            email: '',
+            password: '',
+            passwordConfirmation: '',
+            isAdmin: '',
+            valid: false,
+            rules: {
+                email: [
+                    v => !!v || 'Обязательно поле',
+                    v => /.+@.+\..+/.test(v) || 'Необходимо указать корректную почту',
+                ]
+            }
+        }
+    },
+
+    methods: {
+        showAlertError(message, timeout) {
+            this.alertError.message = message
+            this.alertError.show = true
+            setTimeout(() => {
+                this.alertError.show = false
+            }, timeout)
+        },
+
+        registration() {
+            const data = {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                isAdmin: this.isAdmin
+            }
+            this.$store.dispatch('registration', data)
+                .then(() => this.$router.push('/'))
+                .catch(err => {
+                    console.error(err)
+                    this.showAlertError(err, 3500)
+                })
+        }
+    }
+}
+</script>

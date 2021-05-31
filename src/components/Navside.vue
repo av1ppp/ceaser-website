@@ -27,13 +27,29 @@
             link
         >
             <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+                <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
+
+        <v-list-item
+            to="/secure"
+            key="Secure"
+            v-if="isLoggedIn"
+            link
+        >
+            <v-list-item-icon>
+                <v-icon>mdi-cancel</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+                <v-list-item-title>Secure</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+
     </v-list>
     </v-navigation-drawer>
 </template>
@@ -66,6 +82,10 @@ export default {
             set(value) {
                 this.$store.commit('switchNavside', value)
             }
+        },
+
+        isLoggedIn() {
+            return this.$store.getters.isLoggedIn
         }
     }
 }

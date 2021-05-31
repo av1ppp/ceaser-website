@@ -22,6 +22,17 @@ export default {
 
   data: function () {
     return {}
+  },
+
+  created () {
+    // Обработка просроченных токенов
+    this.$http.interceptors.response.use(undefined, async err => {
+      console.log(err)
+      if (err.status === 401 && err.config && err.config.__isRetryRequest) {
+        this.$store.dispatch('logout')
+      }
+      throw err
+    })
   }
 }
 </script>
