@@ -6,42 +6,41 @@
         :clipped="true"
         :mini-variant.sync="mini"
     >
-
-    <v-list
-        dense
-        nav
-    >
-        <v-list-item
-            v-for="item in items"
-            :to="item.path"
-            :key="item.title"
-            link
+        <v-list
+            dense
+            nav
         >
-            <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
+            <v-list-item
+                v-for="item in items"
+                :to="item.path"
+                :key="item.title"
+                link
+            >
+                <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
 
-            <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
 
-        <v-list-item
-            to="/secure"
-            key="Secure"
-            v-if="isLoggedIn"
-            link
-        >
-            <v-list-item-icon>
-                <v-icon>mdi-cancel</v-icon>
-            </v-list-item-icon>
+            <v-list-item
+                to="/adminpanel"
+                key="AdminPanel"
+                v-if="isLoggedIn"
+                link
+            >
+                <v-list-item-icon>
+                    <v-icon>mdi-view-dashboard</v-icon>
+                </v-list-item-icon>
 
-            <v-list-item-content>
-                <v-list-item-title>Приватное</v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title>Админ-панель</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
 
-    </v-list>
     </v-navigation-drawer>
 </template>
 

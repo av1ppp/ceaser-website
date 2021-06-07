@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { store } from '@/store'
 
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Catalog from '@/views/Catalog.vue'
 import Login from '@/views/Login.vue'
 import Registration from '@/views/Registration.vue'
-import Secure from '@/views/Secure.vue'
-import { store } from '@/store'
+import AdminPanel from '@/views/AdminPanel.vue'
+import MyVideos from '@/views/MyVideos'
+import MyAccount from '@/views/MyAccount'
 
 Vue.use(VueRouter)
 
@@ -37,12 +39,22 @@ const routes = [{
         component: Registration
     },
     {
-        path: '/secure',
-        name: 'Secure',
-        component: Secure,
-        meta: {
-            requiredAuth: true
-        }
+        path: '/adminpanel',
+        name: 'AdminPanel',
+        component: AdminPanel,
+        meta: { requiredAuth: true }
+    },
+    {
+        path: '/my/videos',
+        name: 'MyVideos',
+        component: MyVideos,
+        meta: { requiredAuth: true }
+    },
+    {
+        path: '/my/account',
+        name: 'MyAccount',
+        component: MyAccount,
+        meta: { requiredAuth: true }
     }
 ]
 

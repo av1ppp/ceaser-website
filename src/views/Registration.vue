@@ -1,59 +1,68 @@
 <template>
-    <div style="width: 80%" class="mx-auto mt-5">
-        <h1>Регистрация пользователя</h1>
+    <v-card
+        style="width: 75%"
+        class="mx-auto my-14"
+        :loading="loading"
+        v-on:keyup.enter="registration"
+    >
+        <v-card-title>Регистрация пользователя</v-card-title>
 
         <v-form
             ref="form"
             v-model="valid"
         >
 
-            <v-text-field
-                v-model="name"
-                :rules="[v => !!v || 'Обязательно поле']"
-                label="Имя пользователя"
-                required
-            ></v-text-field>
+            <v-card-text>
+                <v-text-field
+                    v-model="name"
+                    :rules="[v => !!v || 'Обязательно поле']"
+                    label="Имя пользователя"
+                    required
+                ></v-text-field>
 
-            <v-text-field
-                v-model="email"
-                :rules="rules.email"
-                label="Почта"
-                required
-            ></v-text-field>
+                <v-text-field
+                    v-model="email"
+                    :rules="rules.email"
+                    label="Почта"
+                    required
+                ></v-text-field>
 
-            <v-text-field
-                v-model="password"
-                :rules="[v => !!v || 'Обязательное поле']"
-                label="Пароль"
-                required
-            ></v-text-field>
+                <v-text-field
+                    v-model="password"
+                    :rules="[v => !!v || 'Обязательное поле']"
+                    label="Пароль"
+                    required
+                ></v-text-field>
 
-            <v-alert
-                :value="alertError.show"
-                type="error"
-                transition="scale-transition"
-            >
-                {{ alertError.message }}
-            </v-alert>
-
-            <v-col class="text-right">
-                <v-btn
-                    :disabled="!valid"
-                    color="success"
-                    @click="registration"
+                <v-alert
+                    :value="alertError.show"
+                    type="error"
+                    transition="scale-transition"
                 >
-                    Регистрация
-                </v-btn>
-            </v-col>
-           
+                    {{ alertError.message }}
+                </v-alert>
+            </v-card-text>
+
+            <v-card-actions>
+                <v-col class="text-right">
+                    <v-btn
+                        :disabled="!valid"
+                        color="success"
+                        @click="registration"
+                    >
+                        Регистрация
+                    </v-btn>
+                </v-col>
+            </v-card-actions>
         </v-form>
-    </div>
+    </v-card>
 </template>
 
 <script>
 export default {
     data() {
         return {
+            loading: false,
             alertError: {
                 show: false,
                 message: ''
@@ -83,18 +92,22 @@ export default {
         },
 
         registration() {
-            const data = {
-                name: this.name,
-                email: this.email,
-                password: this.password,
-                isAdmin: this.isAdmin
+            if (this.valid) {
+                const data = {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    isAdmin: this.isAdmin
+                }
+                this.loading = true
+                this.$store.dispatch('registration', data)
+                    .then(() => this.$router.push('/'))
+                    .catch(err => {
+                        console.error(err)
+                        this.showAlertError(err, 3500)
+                    })
+                    .finally(() => this.loading = false)
             }
-            this.$store.dispatch('registration', data)
-                .then(() => this.$router.push('/'))
-                .catch(err => {
-                    console.error(err)
-                    this.showAlertError(err, 3500)
-                })
         }
     }
 }

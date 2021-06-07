@@ -7,6 +7,7 @@
   >
     <v-app-bar-nav-icon
       @click="toggleNavside"
+      class="mr-5"
     >
     </v-app-bar-nav-icon>
 
@@ -17,13 +18,61 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn
-      text
+    <v-menu
+      bottom
+      left
       v-if="isLoggedIn"
-      @click="logout"
     >
-    Выйти
-    </v-btn>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          class="mr-3"
+          icon
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon>mdi-account-outline</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list
+        color="pink accent-4"
+        dense
+      >
+        <v-list-item
+          class="dropdown-item"
+          to="/my/account"
+        >
+          <v-list-item-icon>
+            <v-icon>
+              mdi-card-account-details-outline
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Мой профиль</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item
+          class="dropdown-item"
+          to="/my/videos"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-video-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Мои видео</v-list-item-title>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list-item
+          class="dropdown-item"
+          @click="logout"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-exit-to-app</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Выход</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
 
     <template
       v-else
@@ -59,8 +108,14 @@ export default {
 
     logout() {
       this.$store.dispatch('logout')
-        .then(() => this.$router.push('/login'))
+          .then(() => this.$router.push('/login'))
     }
   }
 }
 </script>
+
+<style>
+.dropdown-item {
+  cursor: pointer;
+}
+</style>
