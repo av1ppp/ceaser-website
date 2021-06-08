@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { store } from '@/store'
+import store from '@/store'
 
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
@@ -8,8 +8,8 @@ import Catalog from '@/views/Catalog.vue'
 import Login from '@/views/Login.vue'
 import Registration from '@/views/Registration.vue'
 import AdminPanel from '@/views/AdminPanel.vue'
-import MyVideos from '@/views/MyVideos'
-import MyAccount from '@/views/MyAccount'
+import MyVideos from '@/views/my/Videos'
+import MyAccount from '@/views/my/Account'
 
 Vue.use(VueRouter)
 

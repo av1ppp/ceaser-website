@@ -47,7 +47,7 @@
               mdi-card-account-details-outline
             </v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Мой профиль</v-list-item-title>
+          <v-list-item-title>Профиль</v-list-item-title>
         </v-list-item>
 
         <v-list-item
