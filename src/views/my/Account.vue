@@ -9,7 +9,7 @@
                         <h1>{{ user.name }}</h1>
                     </v-col>
                     <v-col> 
-                        <ProfilePhoto></ProfilePhoto>
+                        <Avatar></Avatar>
                     </v-col>
 
                 </v-row>
@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import ProfilePhoto from './ProfilePhoto'
+import Avatar from './Avatar'
 
 export default {
     components: {
-        ProfilePhoto
+        Avatar
     },
 
     data() {

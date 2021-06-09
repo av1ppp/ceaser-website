@@ -36,7 +36,9 @@ export default {
     methods: {
         changePhoto() {
             const file = this.$refs.inputUpload.files[0]
-            console.log(file)
+            this.$store.dispatch('updateAvatar', file)
+                .then(() => alert("ok"))
+                .catch(err => console.error(err))
         }
     },
 }

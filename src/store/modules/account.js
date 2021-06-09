@@ -23,6 +23,30 @@ export default {
             }
         },
 
+        async updateAvatar({ commit }, file) {
+            const formData = new FormData()
+            formData.append('avatar', file)
+
+            const response = await axios.post(
+                'http://localhost:5555/avatar',
+                formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            )
+
+            if (response.data.done) {
+
+                console.log(commit)
+
+                return response
+
+            } else {
+                throw response.data.message
+            }
+        },
+
         async login({ commit }, _user) {
             commit('authRequest')
 
